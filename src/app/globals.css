@@ -260,6 +260,27 @@ body {
   animation: fallingLeaf var(--fall-duration, 6s) ease-in var(--fall-delay, 0s) infinite;
 }
 
+.pen-ink-ring {
+  border-style: solid;
+  box-shadow:
+    0 0 0 0.35px rgba(28, 74, 148, 0.55),
+    0 0 1.4px rgba(41, 92, 174, 0.24),
+    inset 0 0 1px rgba(130, 177, 255, 0.22);
+}
+
+.pen-ink-ring-secondary {
+  border-style: solid;
+  box-shadow:
+    0 0 0 0.25px rgba(28, 74, 148, 0.42),
+    0 0 1px rgba(36, 84, 165, 0.2),
+    inset 0 0 1px rgba(145, 188, 255, 0.15);
+}
+
+.group\/link:hover .pen-ink-ring,
+.group\/link:hover .pen-ink-ring-secondary {
+  animation: none;
+}
+
 .firefly {
   animation: fireflySpark var(--spark-duration, 2.5s) ease-in-out var(--spark-delay, 0s) infinite;
 }

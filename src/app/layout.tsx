@@ -22,8 +22,8 @@ const kalam = Kalam({
 });
 
 export const metadata: Metadata = {
-  title: "Nature Handbook",
-  description: "Discover plants, animals, stones and outdoor sports guides",
+  title: "Nature & Sport Handbook",
+  description: "Field-ready notes for nature and sport explorers",
 };
 
 export default function RootLayout({
