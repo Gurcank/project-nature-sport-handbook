@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #e8dfcc;
+  --foreground: #312b24;
+  --paper: #f0e5cf;
+  --paper-deep: #dcc89a;
+  --green: #5f7550;
+  --green-deep: #304427;
+  --brown: #8a6542;
+  --brown-deep: #55361f;
+  --pencil: #43362d;
 }
 
 @theme inline {
@@ -14,20 +21,28 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #efe1b9;
+    --foreground: #3f372f;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-kalam), sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
 }
 
-.font-serif,
+::selection {
+  background: color-mix(in srgb, var(--green) 28%, white);
+  color: var(--pencil);
+}
+
+.font-serif {
+  font-family: var(--font-kalam), cursive;
+}
+
 .font-sans {
-  font-family: var(--font-kalam), sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
 }
 
 @keyframes vineGrowLeft {

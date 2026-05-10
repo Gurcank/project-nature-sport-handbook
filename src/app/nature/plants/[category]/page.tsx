@@ -4,6 +4,17 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useSettings } from '@/context/SettingsContext';
 
+function slugify(text: string) {
+  return text
+    .toString()
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9\-]/g, '')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
 const categoryContent = {
   trees: {
     tr: {
@@ -147,12 +158,19 @@ export default function PlantSubCategoryPage() {
         <p className="mb-6 text-green-50/85">{text.intro}</p>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {text.items.map((item) => (
-            <article key={item.name} className="rounded-xl border border-green-200/35 bg-green-900/30 p-4">
-              <h2 className="text-2xl font-semibold text-green-100">{item.name}</h2>
-              <p className="mt-1 text-green-50/80">{item.note}</p>
-            </article>
-          ))}
+          {text.items.map((item) => {
+            const slug = slugify(item.name);
+            return (
+              <article key={item.name} className="rounded-xl border border-green-200/35 bg-green-900/30 p-4">
+                <h2 className="text-2xl font-semibold text-green-100">
+                  <Link href={`/nature/plants/${key}/${slug}`} className="hover:underline">
+                    {item.name}
+                  </Link>
+                </h2>
+                <p className="mt-1 text-green-50/80">{item.note}</p>
+              </article>
+            );
+          })}
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3">

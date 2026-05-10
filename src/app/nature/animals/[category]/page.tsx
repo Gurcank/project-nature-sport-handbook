@@ -4,6 +4,17 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useSettings } from '@/context/SettingsContext';
 
+function slugify(text: string) {
+  return text
+    .toString()
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9\-]/g, '')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
 const categoryContent = {
   mammals: {
     tr: {
@@ -107,11 +118,18 @@ export default function AnimalSubCategoryPage() {
         <p className="mb-6 text-teal-50/85">{text.intro}</p>
 
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-          {text.items.map((item) => (
-            <article key={item} className="rounded-xl border border-teal-200/35 bg-teal-900/30 p-4">
-              <h2 className="text-2xl font-semibold text-teal-100">{item}</h2>
-            </article>
-          ))}
+          {text.items.map((item) => {
+            const slug = slugify(item);
+            return (
+              <article key={item} className="rounded-xl border border-teal-200/35 bg-teal-900/30 p-4">
+                <h2 className="text-2xl font-semibold text-teal-100">
+                  <Link href={`/nature/animals/${key}/${slug}`} className="hover:underline">
+                    {item}
+                  </Link>
+                </h2>
+              </article>
+            );
+          })}
         </div>
 
         <div className="mt-6 flex flex-wrap gap-3">

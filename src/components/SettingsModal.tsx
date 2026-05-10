@@ -22,20 +22,20 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
         onClick={onClose}
       />
 
-      <div className="relative bg-gradient-to-b from-[#1f5a3b]/95 to-[#14452f]/95 rounded-t-2xl sm:rounded-2xl shadow-2xl max-w-md w-full sm:w-96 max-h-screen overflow-y-auto border border-[#4e8f69]/50">
-        <div className="sticky top-0 bg-gradient-to-r from-[#2a6b46]/90 to-[#1f5a3b]/90 border-b border-[#4e8f69]/40 px-6 py-6 flex items-center justify-between">
+      <div className="relative max-h-screen w-full max-w-md overflow-y-auto rounded-t-2xl border border-[#7b5c35]/35 bg-[linear-gradient(180deg,rgba(244,235,214,0.98)_0%,rgba(229,213,178,0.98)_100%)] shadow-2xl sm:w-96 sm:rounded-2xl">
+        <div className="sticky top-0 flex items-center justify-between border-b border-[#7b5c35]/18 bg-[linear-gradient(90deg,rgba(96,119,81,0.94)_0%,rgba(64,84,47,0.94)_100%)] px-6 py-6">
           <div className="flex items-center space-x-3">
             <span className="text-2xl">⚙️</span>
-            <h2 className="text-2xl font-bold text-[#eefcf3]">
+            <h2 className="text-2xl font-bold text-[#f2ecdf]">
               {t('settings')}
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-[#4e8f69]/20 rounded-lg transition-colors"
+            className="rounded-lg p-2 transition-colors hover:bg-black/10"
           >
             <svg
-              className="w-6 h-6 text-[#b9e6c9]"
+              className="h-6 w-6 text-[#f2ecdf]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -52,7 +52,7 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
 
         <div className="p-6 space-y-8">
           <div>
-            <h3 className="text-lg font-semibold text-[#eefcf3] mb-4 flex items-center space-x-2">
+            <h3 className="mb-4 flex items-center space-x-2 text-lg font-semibold text-[#3f372f]">
               <span className="text-xl">🌐</span>
               <span>{t('language')}</span>
             </h3>
@@ -62,19 +62,19 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                 onClick={() => setLanguage('en')}
                 className={`w-full p-3 rounded-lg border-2 text-left transition-all ${
                   language === 'en'
-                    ? 'border-[#4e8f69] bg-[#4e8f69]/20'
-                    : 'border-[#4e8f69]/30 hover:border-[#4e8f69]/60'
+                    ? 'border-[#5f7550] bg-[#5f7550]/12'
+                    : 'border-[#8a6542]/25 hover:border-[#5f7550]/55'
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <span className="text-xl">🇬🇧</span>
-                    <span className="font-semibold text-[#eefcf3]">
-                      English
+                    <span className="text-xl">🇺🇸</span>
+                    <span className="font-semibold text-[#3f372f]">
+                      English (US)
                     </span>
                   </div>
                   {language === 'en' && (
-                    <span className="text-[#b9e6c9] font-bold">✓</span>
+                    <span className="font-bold text-[#5f7550]">✓</span>
                   )}
                 </div>
               </button>
@@ -83,47 +83,30 @@ export default function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                 onClick={() => setLanguage('tr')}
                 className={`w-full p-3 rounded-lg border-2 text-left transition-all ${
                   language === 'tr'
-                    ? 'border-[#4e8f69] bg-[#4e8f69]/20'
-                    : 'border-[#4e8f69]/30 hover:border-[#4e8f69]/60'
+                    ? 'border-[#5f7550] bg-[#5f7550]/12'
+                    : 'border-[#8a6542]/25 hover:border-[#5f7550]/55'
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
                     <span className="text-xl">🇹🇷</span>
-                    <span className="font-semibold text-[#eefcf3]">
+                    <span className="font-semibold text-[#3f372f]">
                       Türkçe
                     </span>
                   </div>
                   {language === 'tr' && (
-                    <span className="text-[#b9e6c9] font-bold">✓</span>
+                    <span className="font-bold text-[#5f7550]">✓</span>
                   )}
                 </div>
               </button>
             </div>
-
-          </div>
-
-          <div className="bg-[#4e8f69]/15 border border-[#4e8f69]/40 rounded-lg p-4">
-            <div className="flex items-start space-x-3">
-              <span className="text-xl">ℹ️</span>
-              <div>
-                <p className="font-semibold text-[#eefcf3]">
-                  {language === 'en' ? 'Your preferences are saved' : 'Tercihleriniz kaydedildi'}
-                </p>
-                <p className="text-sm text-[#b9e6c9] mt-1">
-                  {language === 'en'
-                    ? 'Your language setting is automatically saved to your browser.'
-                    : 'Dil ayarınız otomatik olarak tarayıcınıza kaydedilir.'}
-                </p>
-              </div>
-            </div>
           </div>
         </div>
 
-        <div className="border-t border-[#4e8f69]/30 px-6 py-4 bg-[#2a6b46]/50">
+        <div className="border-t border-[#7b5c35]/18 bg-[linear-gradient(90deg,rgba(107,82,50,0.18)_0%,rgba(95,117,80,0.14)_100%)] px-6 py-4">
           <button
             onClick={onClose}
-            className="w-full py-2 px-4 bg-[#4e8f69] hover:bg-[#3f7f5d] text-[#0e2419] font-semibold rounded-lg transition-colors"
+            className="w-full rounded-lg bg-[linear-gradient(90deg,#5f7550_0%,#8a6542_100%)] px-4 py-2 font-semibold text-[#f4eedf] transition-colors hover:opacity-95"
           >
             {t('closeSettings')}
           </button>
