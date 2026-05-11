@@ -196,7 +196,7 @@ export default function Navigation() {
                 onMouseLeave={scheduleDropdownClose}
               >
                 <button className="px-4 py-2 text-[#c9f0e0] hover:text-white font-semibold transition-all duration-300 flex items-center gap-2 relative group/btn rounded-lg hover:bg-[#3d9d6f]/20">
-                  <IconWrapper icon={Icons.leaf} size={18} color="#a8d5ba" className="transition-transform duration-500 group-hover/btn:-translate-y-0.5 group-hover/btn:rotate-12" />
+                  <IconWrapper icon={Icons.nature} size={18} color="#a8d5ba" className="transition-transform duration-500 group-hover/btn:-translate-y-0.5 group-hover/btn:rotate-12" />
                   <span>{translate('nature')}</span>
                   <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-[#5eb87f] to-[#3d9d6f] group-hover/btn:w-full transition-all duration-300 rounded-full" />
                 </button>

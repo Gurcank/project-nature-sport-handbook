@@ -22,7 +22,10 @@ type NotebookSpreadProps = {
   size?: 'b6' | 'regular' | 'xl';
   leftContent?: React.ReactNode;
   rightContent?: React.ReactNode;
+  leftOverlay?: React.ReactNode;
+  rightOverlay?: React.ReactNode;
   stickyMode?: 'home' | 'page';
+  showHomeSticky?: boolean;
   className?: string;
 };
 
@@ -163,7 +166,10 @@ export default function NotebookSpread({
   size = 'b6',
   leftContent,
   rightContent,
+  leftOverlay,
+  rightOverlay,
   stickyMode = 'page',
+  showHomeSticky = true,
   className,
 }: NotebookSpreadProps) {
   const { language } = useSettings();
@@ -199,41 +205,43 @@ export default function NotebookSpread({
           <div className="absolute inset-y-0 left-1/2 w-[44px] -translate-x-1/2 bg-[linear-gradient(90deg,transparent_0%,rgba(168,132,88,0.14)_28%,rgba(112,80,46,0.34)_44%,rgba(71,43,21,0.68)_50%,rgba(112,80,46,0.34)_56%,rgba(168,132,88,0.14)_72%,transparent_100%)]" />
         </div>
 
-        <Link
-          href="/"
-          aria-label="Go to home"
-          className={`absolute left-0 top-[20%] -translate-y-1/2 -translate-x-[52%] ${isHomeSticky ? 'z-30' : 'z-10 transition-transform duration-300 hover:-translate-x-[62%]'}`}
-        >
-          <span className="relative inline-flex items-center h-16">
-            {/* triangle protrusion on the left */}
-            <span
-              className="flex-shrink-0 flex items-center justify-center"
-              style={{
-                width: language === 'tr' ? '3.6rem' : '3rem',
-                height: '100%',
-                background: 'linear-gradient(160deg,#f0c9d1 0%,#e8b4c0 100%)',
-                clipPath: 'polygon(100% 0, 0 50%, 100% 100%)',
-                boxShadow: '0 8px 14px rgba(57,36,15,0.18)',
-                fontFamily: handwritingFont,
-                fontSize: language === 'tr' ? '0.62rem' : '0.75rem',
-                fontWeight: 700,
-                color: '#5a3740',
-                textShadow: '0.5px 0.5px 0 rgba(255,255,255,0.35)',
-                lineHeight: 1,
-                whiteSpace: 'pre-line',
-                textAlign: 'center',
-              }}
-            >
-              {homeText}
-            </span>
+        {showHomeSticky ? (
+          <Link
+            href="/"
+            aria-label="Go to home"
+            className={`absolute left-0 top-[20%] -translate-y-1/2 -translate-x-[52%] ${isHomeSticky ? 'z-30' : 'z-10 transition-transform duration-300 hover:-translate-x-[62%]'}`}
+          >
+            <span className="relative inline-flex items-center h-16">
+              {/* triangle protrusion on the left */}
+              <span
+                className="flex-shrink-0 flex items-center justify-center"
+                style={{
+                  width: language === 'tr' ? '3.6rem' : '3rem',
+                  height: '100%',
+                  background: 'linear-gradient(160deg,#f0c9d1 0%,#e8b4c0 100%)',
+                  clipPath: 'polygon(100% 0, 0 50%, 100% 100%)',
+                  boxShadow: '0 8px 14px rgba(57,36,15,0.18)',
+                  fontFamily: handwritingFont,
+                  fontSize: language === 'tr' ? '0.62rem' : '0.75rem',
+                  fontWeight: 700,
+                  color: '#5a3740',
+                  textShadow: '0.5px 0.5px 0 rgba(255,255,255,0.35)',
+                  lineHeight: 1,
+                  whiteSpace: 'pre-line',
+                  textAlign: 'center',
+                }}
+              >
+                {homeText}
+              </span>
 
-            {/* rectangular body */}
-            <span
-              className="rounded-r-sm"
-              style={{ height: '100%', background: 'linear-gradient(160deg,#f0c9d1 0%,#e8b4c0 100%)', paddingLeft: '0.5rem', paddingRight: '0.5rem' }}
-            />
-          </span>
-        </Link>
+              {/* rectangular body */}
+              <span
+                className="rounded-r-sm"
+                style={{ height: '100%', background: 'linear-gradient(160deg,#f0c9d1_0%,#e8b4c0_100%)', paddingLeft: '0.5rem', paddingRight: '0.5rem' }}
+              />
+            </span>
+          </Link>
+        ) : null}
 
         <div className="relative z-20 overflow-hidden rounded-[2.75rem] border border-[#6f542f]/60 bg-[linear-gradient(180deg,#ecdcb0_0%,#dcc08d_100%)] shadow-[0_34px_90px_rgba(51,33,14,0.38),inset_0_2px_0_rgba(255,248,229,0.45),inset_0_-12px_24px_rgba(75,52,24,0.14)] md:aspect-[250/176]">
 
@@ -249,6 +257,7 @@ export default function NotebookSpread({
                     {leftNotes.map((note, index) => (
                       <StickyNote key={note.key} note={note} side="left" index={index} total={leftNotes.length} />
                     ))}
+                    {leftOverlay}
                   </div>
             </div>
 
@@ -259,6 +268,7 @@ export default function NotebookSpread({
                 {rightNotes.map((note, index) => (
                   <StickyNote key={note.key} note={note} side="right" index={index} total={rightNotes.length} />
                 ))}
+                {rightOverlay}
               </div>
             </div>
           </div>
