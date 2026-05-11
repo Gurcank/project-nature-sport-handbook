@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import type { CSSProperties } from 'react';
+import { useSettings } from '@/context/SettingsContext';
 
 export type NotebookNote = {
   key: string;
@@ -17,6 +20,9 @@ type NotebookSpreadProps = {
   leftNotes: NotebookNote[];
   rightNotes: NotebookNote[];
   size?: 'b6' | 'regular' | 'xl';
+  leftContent?: React.ReactNode;
+  rightContent?: React.ReactNode;
+  stickyMode?: 'home' | 'page';
   className?: string;
 };
 
@@ -155,8 +161,14 @@ export default function NotebookSpread({
   leftNotes,
   rightNotes,
   size = 'b6',
+  leftContent,
+  rightContent,
+  stickyMode = 'page',
   className,
 }: NotebookSpreadProps) {
+  const { language } = useSettings();
+  const homeText = language === 'tr' ? 'Ana\nSayfa' : 'HOME';
+  const isHomeSticky = stickyMode === 'home';
   const desktopContainerMax = size === 'xl' ? 'max-w-[76rem]' : size === 'b6' ? 'max-w-[64rem]' : 'max-w-[56rem]';
   const notebookMaxWidth =
     size === 'xl'
@@ -187,7 +199,44 @@ export default function NotebookSpread({
           <div className="absolute inset-y-0 left-1/2 w-[44px] -translate-x-1/2 bg-[linear-gradient(90deg,transparent_0%,rgba(168,132,88,0.14)_28%,rgba(112,80,46,0.34)_44%,rgba(71,43,21,0.68)_50%,rgba(112,80,46,0.34)_56%,rgba(168,132,88,0.14)_72%,transparent_100%)]" />
         </div>
 
-        <div className="relative overflow-hidden rounded-[2.75rem] border border-[#6f542f]/60 bg-[linear-gradient(180deg,#ecdcb0_0%,#dcc08d_100%)] shadow-[0_34px_90px_rgba(51,33,14,0.38),inset_0_2px_0_rgba(255,248,229,0.45),inset_0_-12px_24px_rgba(75,52,24,0.14)] md:aspect-[250/176]">
+        <Link
+          href="/"
+          aria-label="Go to home"
+          className={`absolute left-0 top-[20%] -translate-y-1/2 -translate-x-[52%] ${isHomeSticky ? 'z-30' : 'z-10 transition-transform duration-300 hover:-translate-x-[62%]'}`}
+        >
+          <span className="relative inline-flex items-center h-16">
+            {/* triangle protrusion on the left */}
+            <span
+              className="flex-shrink-0 flex items-center justify-center"
+              style={{
+                width: language === 'tr' ? '3.6rem' : '3rem',
+                height: '100%',
+                background: 'linear-gradient(160deg,#f0c9d1 0%,#e8b4c0 100%)',
+                clipPath: 'polygon(100% 0, 0 50%, 100% 100%)',
+                boxShadow: '0 8px 14px rgba(57,36,15,0.18)',
+                fontFamily: handwritingFont,
+                fontSize: language === 'tr' ? '0.62rem' : '0.75rem',
+                fontWeight: 700,
+                color: '#5a3740',
+                textShadow: '0.5px 0.5px 0 rgba(255,255,255,0.35)',
+                lineHeight: 1,
+                whiteSpace: 'pre-line',
+                textAlign: 'center',
+              }}
+            >
+              {homeText}
+            </span>
+
+            {/* rectangular body */}
+            <span
+              className="rounded-r-sm"
+              style={{ height: '100%', background: 'linear-gradient(160deg,#f0c9d1 0%,#e8b4c0 100%)', paddingLeft: '0.5rem', paddingRight: '0.5rem' }}
+            />
+          </span>
+        </Link>
+
+        <div className="relative z-20 overflow-hidden rounded-[2.75rem] border border-[#6f542f]/60 bg-[linear-gradient(180deg,#ecdcb0_0%,#dcc08d_100%)] shadow-[0_34px_90px_rgba(51,33,14,0.38),inset_0_2px_0_rgba(255,248,229,0.45),inset_0_-12px_24px_rgba(75,52,24,0.14)] md:aspect-[250/176]">
+
           <div className="pointer-events-none absolute inset-y-5 left-4 w-3 rounded-full bg-[linear-gradient(90deg,rgba(143,108,63,0.35),rgba(255,255,255,0.0))]" />
           <div className="pointer-events-none absolute inset-y-5 right-4 w-3 rounded-full bg-[linear-gradient(270deg,rgba(143,108,63,0.35),rgba(255,255,255,0.0))]" />
           <div className="pointer-events-none absolute inset-y-0 left-1/2 z-20 w-[48px] -translate-x-1/2 bg-[linear-gradient(90deg,transparent_0%,rgba(173,136,88,0.14)_24%,rgba(127,92,50,0.4)_40%,rgba(78,48,24,0.82)_48%,rgba(58,33,13,0.98)_50%,rgba(78,48,24,0.82)_52%,rgba(127,92,50,0.4)_60%,rgba(173,136,88,0.14)_76%,transparent_100%)]" />
@@ -195,16 +244,18 @@ export default function NotebookSpread({
           <div className="grid gap-0 md:h-full md:grid-cols-2">
             <div className="relative min-h-[29rem] rounded-tl-[2.75rem] rounded-bl-[2.75rem] border-b border-[#7a5c37]/26 bg-[linear-gradient(165deg,#f0dfb1_0%,#e0c590_100%)] px-5 py-6 shadow-[inset_-22px_0_26px_rgba(63,43,19,0.12)] sm:min-h-[31rem] md:h-full md:min-h-0 md:border-b-0 md:border-r md:border-[#7a5c37]/24">
               <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-[linear-gradient(270deg,rgba(108,79,44,0.18),transparent)]" />
-              <div className="relative h-full min-h-[29rem] overflow-hidden sm:min-h-[31rem]">
-                {leftNotes.map((note, index) => (
-                  <StickyNote key={note.key} note={note} side="left" index={index} total={leftNotes.length} />
-                ))}
-              </div>
+                  <div className="relative h-full min-h-[29rem] overflow-hidden sm:min-h-[31rem]">
+                    <div className="relative pl-14 z-20">{leftContent}</div>
+                    {leftNotes.map((note, index) => (
+                      <StickyNote key={note.key} note={note} side="left" index={index} total={leftNotes.length} />
+                    ))}
+                  </div>
             </div>
 
             <div className="relative rounded-tr-[2.75rem] rounded-br-[2.75rem] bg-[linear-gradient(195deg,#f0dfb1_0%,#e0c590_100%)] px-5 py-6 shadow-[inset_22px_0_26px_rgba(63,43,19,0.12)] md:h-full">
               <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-[linear-gradient(90deg,rgba(108,79,44,0.18),transparent)]" />
               <div className="relative h-full min-h-[29rem] overflow-hidden sm:min-h-[31rem]">
+                {rightContent}
                 {rightNotes.map((note, index) => (
                   <StickyNote key={note.key} note={note} side="right" index={index} total={rightNotes.length} />
                 ))}

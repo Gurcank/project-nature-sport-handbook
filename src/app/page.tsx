@@ -4,40 +4,10 @@
 import Link from 'next/link';
 import { useSettings } from '@/context/SettingsContext';
 import { Icons, IconWrapper } from '@/lib/icons';
+import NotebookSpread from '@/components/NotebookSpread';
 
 // Grass blades component - curved SVG
 
-
-function MainCategoryLink({ label, href, icon }: { label: string; href: string; icon: React.ReactNode }) {
-  return (
-    <Link href={href}>
-      <div className="group/link relative inline-flex cursor-pointer items-center gap-2 px-2 py-2">
-          <div
-            className="pen-ink-ring pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-full border-2 opacity-0 transition-opacity duration-150 group-hover/link:opacity-100"
-            style={{
-              borderColor: 'rgba(95, 119, 80, 0.84)',
-              borderTopWidth: '2.4px',
-              borderBottomWidth: '1.8px',
-              transform: 'rotate(-4deg)',
-            }}
-          />
-          <div
-            className="pen-ink-ring-secondary pointer-events-none absolute -inset-x-1 -inset-y-0.5 rounded-full border opacity-0 transition-opacity duration-150 group-hover/link:opacity-100"
-            style={{
-              borderColor: 'rgba(143, 106, 69, 0.58)',
-              borderLeftWidth: '1.2px',
-              borderRightWidth: '0.9px',
-              transform: 'rotate(3deg)',
-            }}
-          />
-          <IconWrapper icon={icon} size={20} color="#5a5a5a" />
-          <h3 className="relative text-left text-lg font-normal" style={{ color: '#5a5a5a', fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}>
-            {label}
-          </h3>
-      </div>
-    </Link>
-  );
-}
 
 export default function HomePage() {
   const { language } = useSettings();
@@ -104,45 +74,17 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative mt-10 w-full max-w-5xl">
-            {/* Back stacked pages */}
-            <div className="pointer-events-none absolute -inset-x-3 top-[16px] h-[calc(100%-16px)] rounded-[2.5rem] border border-[#7a5c37]/24 bg-[linear-gradient(180deg,#e8d8aa_0%,#d8bd88_100%)] opacity-90 shadow-[0_12px_30px_rgba(60,38,17,0.2)]">
-              <div className="absolute inset-y-0 left-1/2 w-[30px] -translate-x-1/2 bg-[linear-gradient(90deg,transparent_0%,rgba(155,120,77,0.1)_34%,rgba(102,72,40,0.22)_46%,rgba(66,40,19,0.5)_50%,rgba(102,72,40,0.22)_54%,rgba(155,120,77,0.1)_66%,transparent_100%)]" />
-            </div>
-            <div className="pointer-events-none absolute -inset-x-2 top-[12px] h-[calc(100%-12px)] rounded-[2.55rem] border border-[#7a5c37]/28 bg-[linear-gradient(180deg,#eadbb0_0%,#dbc190_100%)] opacity-92 shadow-[0_16px_40px_rgba(60,38,17,0.22)]">
-              <div className="absolute inset-y-0 left-1/2 w-[34px] -translate-x-1/2 bg-[linear-gradient(90deg,transparent_0%,rgba(160,124,81,0.12)_30%,rgba(106,76,43,0.28)_45%,rgba(68,42,20,0.58)_50%,rgba(106,76,43,0.28)_55%,rgba(160,124,81,0.12)_70%,transparent_100%)]" />
-            </div>
-            <div className="pointer-events-none absolute -inset-x-1 top-[8px] h-[calc(100%-8px)] rounded-[2.58rem] border border-[#7a5c37]/32 bg-[linear-gradient(180deg,#ecdeb4_0%,#ddc595_100%)] opacity-94 shadow-[0_22px_48px_rgba(60,38,17,0.24)]">
-              <div className="absolute inset-y-0 left-1/2 w-[40px] -translate-x-1/2 bg-[linear-gradient(90deg,transparent_0%,rgba(168,132,88,0.14)_28%,rgba(112,80,46,0.34)_44%,rgba(71,43,21,0.68)_50%,rgba(112,80,46,0.34)_56%,rgba(168,132,88,0.14)_72%,transparent_100%)]" />
-            </div>
-
-            <div className="absolute inset-x-6 top-8 h-full rounded-[2.7rem] bg-[#4e3418]/24 blur-2xl" />
-
-            <div className="relative mx-1 overflow-hidden rounded-[2.6rem] border border-[#6f542f]/60 bg-[linear-gradient(180deg,#ecdcb0_0%,#dcc08d_100%)] shadow-[0_34px_90px_rgba(51,33,14,0.38),inset_0_2px_0_rgba(255,248,229,0.45),inset_0_-12px_24px_rgba(75,52,24,0.14)]">
-              <div className="pointer-events-none absolute inset-y-5 left-4 w-3 rounded-full bg-[linear-gradient(90deg,rgba(143,108,63,0.35),rgba(255,255,255,0.0))]" />
-              <div className="pointer-events-none absolute inset-y-5 right-4 w-3 rounded-full bg-[linear-gradient(270deg,rgba(143,108,63,0.35),rgba(255,255,255,0.0))]" />
-
-              <div className="pointer-events-none absolute inset-y-0 left-1/2 z-20 w-[46px] -translate-x-1/2 bg-[linear-gradient(90deg,transparent_0%,rgba(173,136,88,0.14)_24%,rgba(127,92,50,0.4)_40%,rgba(78,48,24,0.82)_48%,rgba(58,33,13,0.98)_50%,rgba(78,48,24,0.82)_52%,rgba(127,92,50,0.4)_60%,rgba(173,136,88,0.14)_76%,transparent_100%)]" />
-
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-14 bg-[linear-gradient(180deg,rgba(255,255,255,0.55),rgba(255,255,255,0.05)_70%,transparent)]" />
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-[linear-gradient(0deg,rgba(72,50,23,0.2),transparent)]" />
-
-              <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(180deg,rgba(97,70,35,0.05)_0px,rgba(97,70,35,0.05)_1px,transparent_1px,transparent_32px)]" />
-
-              {/* Layered paper edges */}
-              <div className="pointer-events-none absolute bottom-[-7px] left-[3%] h-3 w-[44%] rounded-b-[1rem] bg-[#d7bc86] shadow-[0_2px_0_rgba(109,78,38,0.32)]" />
-              <div className="pointer-events-none absolute bottom-[-11px] left-[4%] h-3 w-[42%] rounded-b-[1rem] bg-[#ceb177] shadow-[0_2px_0_rgba(109,78,38,0.28)]" />
-              <div className="pointer-events-none absolute bottom-[-15px] left-[5%] h-[2px] w-[40%] rounded-b bg-[#b39157]/70" />
-              <div className="pointer-events-none absolute bottom-[-7px] right-[3%] h-3 w-[44%] rounded-b-[1rem] bg-[#d7bc86] shadow-[0_2px_0_rgba(109,78,38,0.32)]" />
-              <div className="pointer-events-none absolute bottom-[-11px] right-[4%] h-3 w-[42%] rounded-b-[1rem] bg-[#ceb177] shadow-[0_2px_0_rgba(109,78,38,0.28)]" />
-              <div className="pointer-events-none absolute bottom-[-15px] right-[5%] h-[2px] w-[40%] rounded-b bg-[#b39157]/70" />
-
-              <div className="grid gap-0 md:grid-cols-2">
-                <div className="relative min-h-[28rem] border-b border-[#7a5c37]/26 bg-[linear-gradient(165deg,#f0dfb1_0%,#e0c590_100%)] px-6 py-8 shadow-[inset_-22px_0_26px_rgba(63,43,19,0.12)] sm:px-10 md:min-h-[34rem] md:border-b-0 md:border-r md:border-[#7a5c37]/24 md:pr-12">
-                  <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-[linear-gradient(270deg,rgba(108,79,44,0.18),transparent)]" />
-                  <div className="relative mb-5 inline-flex items-baseline gap-3">
+          <div className="flex-1 mx-auto w-full max-w-[88rem] px-4 py-4 sm:py-5">
+            <NotebookSpread
+              leftNotes={[]}
+              rightNotes={[]}
+              size="xl"
+              stickyMode="home"
+              leftContent={(
+                <div>
+                  <div className="relative mb-6 inline-flex items-baseline gap-3">
                     <span
-                      className="text-[0.78rem] uppercase tracking-[0.18em] text-[var(--pencil)]/85"
+                      className="text-[0.78rem] uppercase tracking-[0.18em] text-[#5a5a5a]/70"
                       style={{
                         fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive',
                         transform: 'translateY(-0.06em)'
@@ -151,7 +93,7 @@ export default function HomePage() {
                       Chapter
                     </span>
                     <span
-                      className="inline-block text-[1.1rem] leading-none"
+                      className="inline-block text-[1.35rem] leading-none"
                       style={{
                         fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive',
                         letterSpacing: '0.08em',
@@ -165,39 +107,74 @@ export default function HomePage() {
                       Ⅰ
                     </span>
                   </div>
+
                   <h2
                     style={{ color: '#5a5a5a', fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}
-                    className="text-5xl font-serif sm:text-6xl"
+                    className="text-6xl font-serif sm:text-7xl mb-4"
                   >
                     {language === 'tr' ? 'Doğa' : 'Nature'}
                   </h2>
-                  <p style={{ color: '#5a5a5a', fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }} className="mt-3 max-w-md text-sm leading-7 font-serif">
+
+                  <p style={{ color: '#5a5a5a', fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }} className="text-base leading-7 font-serif mb-6">
                     {language === 'tr'
                       ? 'Hayvanlar, bitkiler, mantarlar ve taşlar hakkında notlar.'
                       : 'Notes about animals, plants, mushrooms, and stones.'}
                   </p>
-                  <div className="mt-8 flex flex-col gap-4">
-                    <MainCategoryLink label={language === 'tr' ? 'Hayvanlar' : 'Animals'} href="/nature/animals" icon={Icons.deer} />
-                    <MainCategoryLink label={language === 'tr' ? 'Bitkiler' : 'Plants'} href="/nature/plants" icon={Icons.leaf} />
-                    <MainCategoryLink label={language === 'tr' ? 'Mantarlar' : 'Mushrooms'} href="/nature/mushrooms" icon={Icons.mushroom} />
-                    <MainCategoryLink label={language === 'tr' ? 'Taşlar ve Mineraller' : 'Stones & Minerals'} href="/nature/stones" icon={Icons.rock} />
+
+                  <div className="flex flex-col gap-4 pt-2">
+                    <Link href="/nature/animals">
+                      <div className="group/link relative inline-flex cursor-pointer items-center gap-2 px-2 py-2">
+                        <div className="pen-ink-ring pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-full border-2 opacity-0 transition-opacity duration-150 group-hover/link:opacity-100" style={{ borderColor: 'rgba(95, 119, 80, 0.84)', borderTopWidth: '2.4px', borderBottomWidth: '1.8px', transform: 'rotate(-4deg)' }} />
+                        <IconWrapper icon={Icons.deer} size={20} color="#5a5a5a" />
+                        <span className="relative text-base text-[#5a5a5a]" style={{ fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}>
+                          {language === 'tr' ? 'Hayvanlar' : 'Animals'}
+                        </span>
+                      </div>
+                    </Link>
+                    <Link href="/nature/plants">
+                      <div className="group/link relative inline-flex cursor-pointer items-center gap-2 px-2 py-2">
+                        <div className="pen-ink-ring pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-full border-2 opacity-0 transition-opacity duration-150 group-hover/link:opacity-100" style={{ borderColor: 'rgba(95, 119, 80, 0.84)', borderTopWidth: '2.4px', borderBottomWidth: '1.8px', transform: 'rotate(-4deg)' }} />
+                        <IconWrapper icon={Icons.leaf} size={20} color="#5a5a5a" />
+                        <span className="relative text-base text-[#5a5a5a]" style={{ fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}>
+                          {language === 'tr' ? 'Bitkiler' : 'Plants'}
+                        </span>
+                      </div>
+                    </Link>
+                    <Link href="/nature/mushrooms">
+                      <div className="group/link relative inline-flex cursor-pointer items-center gap-2 px-2 py-2">
+                        <div className="pen-ink-ring pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-full border-2 opacity-0 transition-opacity duration-150 group-hover/link:opacity-100" style={{ borderColor: 'rgba(95, 119, 80, 0.84)', borderTopWidth: '2.4px', borderBottomWidth: '1.8px', transform: 'rotate(-4deg)' }} />
+                        <IconWrapper icon={Icons.mushroom} size={20} color="#5a5a5a" />
+                        <span className="relative text-base text-[#5a5a5a]" style={{ fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}>
+                          {language === 'tr' ? 'Mantarlar' : 'Mushrooms'}
+                        </span>
+                      </div>
+                    </Link>
+                    <Link href="/nature/stones">
+                      <div className="group/link relative inline-flex cursor-pointer items-center gap-2 px-2 py-2">
+                        <div className="pen-ink-ring pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-full border-2 opacity-0 transition-opacity duration-150 group-hover/link:opacity-100" style={{ borderColor: 'rgba(95, 119, 80, 0.84)', borderTopWidth: '2.4px', borderBottomWidth: '1.8px', transform: 'rotate(-4deg)' }} />
+                        <IconWrapper icon={Icons.rock} size={20} color="#5a5a5a" />
+                        <span className="relative text-base text-[#5a5a5a]" style={{ fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}>
+                          {language === 'tr' ? 'Taşlar ve Mineraller' : 'Stones & Minerals'}
+                        </span>
+                      </div>
+                    </Link>
                   </div>
                 </div>
-
-                <div className="relative min-h-[28rem] bg-[linear-gradient(195deg,#f0dfb1_0%,#e0c590_100%)] px-6 py-8 shadow-[inset_22px_0_26px_rgba(63,43,19,0.12)] sm:px-10 md:min-h-[34rem] md:pl-12">
-                  <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-[linear-gradient(90deg,rgba(108,79,44,0.18),transparent)]" />
-                  <div className="relative mb-5 inline-flex items-baseline gap-3">
+              )}
+              rightContent={(
+                <div className="pl-8 md:pl-12">
+                  <div className="relative mb-6 inline-flex items-baseline gap-3">
                     <span
-                      className="text-[0.78rem] uppercase tracking-[0.18em] text-[var(--pencil)]/85"
+                      className="text-[0.95rem] uppercase tracking-[0.18em] text-[#5a5a5a]/70"
                       style={{
                         fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive',
                         transform: 'translateY(-0.06em)'
                       }}
                     >
-                      Chapter 
+                      Chapter
                     </span>
                     <span
-                      className="inline-block text-[1.1rem] leading-none"
+                      className="inline-block text-[1.35rem] leading-none"
                       style={{
                         fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive',
                         letterSpacing: '0.08em',
@@ -211,30 +188,56 @@ export default function HomePage() {
                       Ⅱ
                     </span>
                   </div>
+
                   <h2
                     style={{ color: '#5a5a5a', fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}
-                    className="text-5xl font-serif sm:text-6xl"
+                    className="text-6xl font-serif sm:text-7xl mb-4"
                   >
                     {language === 'tr' ? 'Spor' : 'Sport'}
                   </h2>
-                  <p style={{ color: '#5a5a5a', fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }} className="mt-3 max-w-md text-sm leading-7 font-serif">
+
+                  <p style={{ color: '#5a5a5a', fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }} className="text-base leading-7 font-serif mb-6">
                     {language === 'tr'
                       ? 'Kara, su ve hava sporları hakkında notlar.'
                       : 'Notes about land, water, and air sports.'}
                   </p>
-                  <div className="mt-8 flex flex-col gap-4">
-                    <MainCategoryLink label={language === 'tr' ? 'Kara Sporları' : 'Land Sports'} href="/sport/hiking" icon={Icons.hikingBoot} />
-                    <MainCategoryLink label={language === 'tr' ? 'Su Sporları' : 'Water Sports'} href="/sport/water-sports" icon={Icons.waves} />
-                    <MainCategoryLink label={language === 'tr' ? 'Hava Sporları' : 'Air Sports'} href="/sport/air-sports" icon={Icons.parachute} />
+
+                  <div className="flex flex-col gap-4 pt-2">
+                    <Link href="/sport/hiking">
+                      <div className="group/link relative inline-flex cursor-pointer items-center gap-2 px-2 py-2">
+                        <div className="pen-ink-ring pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-full border-2 opacity-0 transition-opacity duration-150 group-hover/link:opacity-100" style={{ borderColor: 'rgba(95, 119, 80, 0.84)', borderTopWidth: '2.4px', borderBottomWidth: '1.8px', transform: 'rotate(-4deg)' }} />
+                        <IconWrapper icon={Icons.hikingBoot} size={20} color="#5a5a5a" />
+                        <span className="relative text-base text-[#5a5a5a]" style={{ fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}>
+                          {language === 'tr' ? 'Kara Sporları' : 'Land Sports'}
+                        </span>
+                      </div>
+                    </Link>
+                    <Link href="/sport/water-sports">
+                      <div className="group/link relative inline-flex cursor-pointer items-center gap-2 px-2 py-2">
+                        <div className="pen-ink-ring pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-full border-2 opacity-0 transition-opacity duration-150 group-hover/link:opacity-100" style={{ borderColor: 'rgba(95, 119, 80, 0.84)', borderTopWidth: '2.4px', borderBottomWidth: '1.8px', transform: 'rotate(-4deg)' }} />
+                        <IconWrapper icon={Icons.waves} size={20} color="#5a5a5a" />
+                        <span className="relative text-base text-[#5a5a5a]" style={{ fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}>
+                          {language === 'tr' ? 'Su Sporları' : 'Water Sports'}
+                        </span>
+                      </div>
+                    </Link>
+                    <Link href="/sport/air-sports">
+                      <div className="group/link relative inline-flex cursor-pointer items-center gap-2 px-2 py-2">
+                        <div className="pen-ink-ring pointer-events-none absolute -inset-x-2 -inset-y-1 rounded-full border-2 opacity-0 transition-opacity duration-150 group-hover/link:opacity-100" style={{ borderColor: 'rgba(95, 119, 80, 0.84)', borderTopWidth: '2.4px', borderBottomWidth: '1.8px', transform: 'rotate(-4deg)' }} />
+                        <IconWrapper icon={Icons.parachute} size={20} color="#5a5a5a" />
+                        <span className="relative text-base text-[#5a5a5a]" style={{ fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}>
+                          {language === 'tr' ? 'Hava Sporları' : 'Air Sports'}
+                        </span>
+                      </div>
+                    </Link>
                   </div>
                 </div>
-              </div>
-            </div>
+              )}
+            />
           </div>
         </div>
       </section>
     </div>
   );
 }
-
 
