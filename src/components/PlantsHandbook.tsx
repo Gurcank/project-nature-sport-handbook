@@ -1,7 +1,7 @@
 'use client';
 
+import Handbook from './Handbook';
 import type { NotebookNote } from './NotebookSpread';
-import NotebookSpread from './NotebookSpread';
 import { useSettings, type Language } from '@/context/SettingsContext';
 
 const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
@@ -9,7 +9,7 @@ const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
     {
       key: 'trees',
       title: 'Ağaçlar',
-      desc: 'Orman ve park ekosistemlerinde yaygın ağaç türleri.',
+      desc: 'Meşe, çınar, meyve ağaçları ve iğne yapraklıların tam listesi.',
       href: '/nature/plants/trees',
       tone: 'bg-[#ced2b0] border-[#4f6d36]/40',
       pin: '#5c6b47',
@@ -20,7 +20,7 @@ const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
     {
       key: 'herbs',
       title: 'Otlar',
-      desc: 'Yumuşak gövdeli otsu türler.',
+      desc: 'Nane, kekik, safran ve diğer aromatik otsu türler.',
       href: '/nature/plants/herbs',
       tone: 'bg-[#ddd1b7] border-[#8a7355]/40',
       pin: '#6d5a42',
@@ -31,7 +31,7 @@ const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
     {
       key: 'shrubs',
       title: 'Çalılar',
-      desc: 'Kısa boylu odunsu bitki türleri.',
+      desc: 'Zakkumdan lavantaya uzanan çalı ve bodur türler.',
       href: '/nature/plants/shrubs',
       tone: 'bg-[#d7c0a5] border-[#7a5c37]/40',
       pin: '#7a5a35',
@@ -42,7 +42,7 @@ const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
     {
       key: 'flowers',
       title: 'Çiçekli Bitkiler',
-      desc: 'Çiçek ve tohum oluşturan bitki grupları.',
+      desc: 'Gül, lale, orkide ve bahçe çiçeklerinin geniş seçkisi.',
       href: '/nature/plants/flowers',
       tone: 'bg-[#dfcfb4] border-[#8a6f31]/40',
       pin: '#8a673f',
@@ -53,7 +53,7 @@ const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
     {
       key: 'mosses',
       title: 'Yosunlar',
-      desc: 'Nemli habitatlarda bulunan sporlu bitki toplulukları.',
+      desc: 'Kara yosunu, ciğer otu ve turba yosunu gibi sporlu türler.',
       href: '/nature/plants/mosses',
       tone: 'bg-[#c9d1b9] border-[#5a7a4a]/40',
       pin: '#5f7250',
@@ -64,7 +64,7 @@ const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
     {
       key: 'aquatic',
       title: 'Su Bitkileri',
-      desc: 'Tatlı su ve kıyı bölgelerinde yaşayan türler.',
+      desc: 'Nilüfer, saz ve diğer sulak alan bitkileri.',
       href: '/nature/plants/aquatic',
       tone: 'bg-[#cfd0bd] border-[#4a6b7a]/40',
       pin: '#5f6f67',
@@ -77,7 +77,7 @@ const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
     {
       key: 'trees',
       title: 'Trees',
-      desc: 'Common tree species in forest and park ecosystems.',
+      desc: 'A complete set of trees, fruit trees, and conifers.',
       href: '/nature/plants/trees',
       tone: 'bg-[#ced2b0] border-[#4f6d36]/40',
       pin: '#5c6b47',
@@ -88,7 +88,7 @@ const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
     {
       key: 'herbs',
       title: 'Herbs',
-      desc: 'Soft-stem herbaceous species.',
+      desc: 'Aromatic soft-stemmed species such as mint and thyme.',
       href: '/nature/plants/herbs',
       tone: 'bg-[#ddd1b7] border-[#8a7355]/40',
       pin: '#6d5a42',
@@ -99,7 +99,7 @@ const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
     {
       key: 'shrubs',
       title: 'Shrubs',
-      desc: 'Low-growing woody plant species.',
+      desc: 'Shrubs and compact woody forms from oleander to lavender.',
       href: '/nature/plants/shrubs',
       tone: 'bg-[#d7c0a5] border-[#7a5c37]/40',
       pin: '#7a5a35',
@@ -110,7 +110,7 @@ const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
     {
       key: 'flowers',
       title: 'Flowering Plants',
-      desc: 'Plant groups that produce flowers and seeds.',
+      desc: 'A wide selection of roses, tulips, orchids, and garden flowers.',
       href: '/nature/plants/flowers',
       tone: 'bg-[#dfcfb4] border-[#8a6f31]/40',
       pin: '#8a673f',
@@ -121,7 +121,7 @@ const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
     {
       key: 'mosses',
       title: 'Mosses',
-      desc: 'Spore-forming plant groups in humid habitats.',
+      desc: 'Spore-based species such as mosses, liverworts, and sphagnum.',
       href: '/nature/plants/mosses',
       tone: 'bg-[#c9d1b9] border-[#5a7a4a]/40',
       pin: '#5f7250',
@@ -132,7 +132,7 @@ const plantNotesByLanguage: Record<Language, NotebookNote[]> = {
     {
       key: 'aquatic',
       title: 'Aquatic Plants',
-      desc: 'Species living in freshwater and coastal areas.',
+      desc: 'Water lilies, reeds, and other wetland species.',
       href: '/nature/plants/aquatic',
       tone: 'bg-[#cfd0bd] border-[#4a6b7a]/40',
       pin: '#5f6f67',
@@ -149,9 +149,5 @@ export default function PlantsHandbook() {
   const leftNotes = plantNotes.slice(0, 3);
   const rightNotes = plantNotes.slice(3);
 
-  return (
-    <div className="flex-1 mx-auto w-full max-w-[88rem] px-4 py-4 sm:py-5">
-      <NotebookSpread leftNotes={leftNotes} rightNotes={rightNotes} size="xl" />
-    </div>
-  );
+  return <Handbook leftNotes={leftNotes} rightNotes={rightNotes} size="xl" />;
 }

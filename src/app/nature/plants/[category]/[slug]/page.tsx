@@ -67,7 +67,7 @@ export default function PlantDetailPage({ params }: { params: { category: string
                 <dd>{plant.height ?? '—'}</dd>
               </div>
               <div>
-                <dt className="font-semibold">Ciceklenme</dt>
+                <dt className="font-semibold">Çiçeklenme</dt>
                 <dd>{plant.blooming ?? '—'}</dd>
               </div>
               <div>

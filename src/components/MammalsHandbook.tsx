@@ -9,23 +9,19 @@ type TurnDirection = 'next' | 'prev';
 
 function MammalCard({ animal, language }: { animal: MammalEntry; language: Language }) {
   return (
-    <article className="flex gap-4 rounded-[1.5rem] bg-transparent">
-      <figure className="w-[8.5rem] shrink-0 rounded-[1.2rem] border border-[#dcdcdc] bg-white p-2 shadow-[0_10px_24px_rgba(57,36,15,0.12),0_0_0_1px_rgba(255,255,255,0.72),inset_0_1px_0_rgba(255,255,255,0.7)]">
-        <img src={animal.image} alt={animal.name[language]} className="h-[8.75rem] w-full rounded-[0.85rem] object-cover" />
-        <figcaption className="mt-2 text-center text-[0.98rem] font-semibold leading-tight text-[#4f4f4f]" style={{ fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}>
+    <article className="flex gap-3.5 rounded-[1.4rem] px-1 py-1">
+      <figure className="flex h-[13.2rem] w-[8.7rem] shrink-0 flex-col overflow-hidden rounded-[1.15rem] border border-[#dcdcdc] bg-white p-1.5 shadow-[0_10px_24px_rgba(57,36,15,0.12),0_0_0_1px_rgba(255,255,255,0.72),inset_0_1px_0_rgba(255,255,255,0.7)]">
+        <img src={animal.image} alt={animal.name[language]} className="h-[10rem] w-full rounded-[0.8rem] object-cover" />
+        <figcaption className="mt-1.5 truncate text-center text-[0.84rem] font-semibold leading-tight text-[#4f4f4f]" style={{ fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}>
           {animal.name[language]}
         </figcaption>
       </figure>
 
-      <div className="min-w-0 flex-1 pt-2" style={{ fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive' }}>
-        <p className="text-[1.02rem] leading-7 text-[#4f4f4f]">{animal.description[language]}</p>
-        <p className="mt-2 text-[0.88rem] text-[#6b6b6b]/80">{animal.scientificName}</p>
-        <p className="mt-1 text-[0.88rem] text-[#6b6b6b]/78">
-          <span className="uppercase tracking-[0.18em] text-[#6b6b6b]/55">Diet</span> {animal.diet}
-        </p>
-        <p className="mt-1 text-[0.88rem] text-[#6b6b6b]/78">
-          <span className="uppercase tracking-[0.18em] text-[#6b6b6b]/55">Habitat</span> {animal.habitat}
-        </p>
+      <div className="min-w-0 flex-1 pt-1.5" style={{ fontFamily: 'var(--font-kalam), "Segoe Print", "Bradley Hand", cursive', color: '#4f4f4f' }}>
+        <p className="text-[0.96rem] font-semibold leading-6.5 text-inherit">{animal.scientificName}</p>
+        <p className="mt-0.5 text-[0.9rem] leading-6.5 text-inherit">• Diet : {animal.diet}</p>
+        <p className="mt-0.5 text-[0.9rem] leading-6.5 text-inherit">• Habitat : {animal.habitat}</p>
+        <p className="mt-2.5 text-[0.9rem] leading-6.5 text-inherit opacity-90">• {animal.description[language]}</p>
       </div>
     </article>
   );

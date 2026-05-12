@@ -103,21 +103,25 @@ export default function Navigation() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [brandTitle, setBrandTitle] = useState('Nature & Sport Handbook');
+  const [searchPlaceholder, setSearchPlaceholder] = useState('Search plants, animals, sports...');
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { language } = useSettings();
   const router = useRouter();
   const translate = (key: keyof typeof translations.en) => t(key, language);
 
   useEffect(() => {
+    setBrandTitle(language === 'tr' ? 'Doğa ve Spor El Kitabı' : 'Nature & Sport Handbook');
+    setSearchPlaceholder(language === 'tr' ? 'Bitki, hayvan, spor ara...' : 'Search plants, animals, sports...');
     return () => {
       if (closeTimerRef.current) {
         clearTimeout(closeTimerRef.current);
       }
     };
-  }, []);
+  }, [language]);
 
-  const brandTitle = language === 'tr' ? 'Doğa ve Spor El Kitabı' : 'Nature & Sport Handbook';
-  const searchPlaceholder =
+  // Keep as constant for fallback
+  const defaultSearchPlaceholder =
     language === 'tr' ? 'Bitki, hayvan, spor ara...' : 'Search plants, animals, sports...';
 
   const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
